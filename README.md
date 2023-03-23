@@ -7,4 +7,21 @@ Organize sua vida com facilidade usando o nosso aplicativo de Todo List! Com o n
 ![](/docs/images/Todo.png)
 ![](/docs/images/TodoEmpty.png)
 
+## Getting started
 
+Para executar o aplicativo, você precisará ter o Node.js instalado no seu computador. Após isso basta você seguir o passo-a-passo abaixo:
+
+Clone este repositório
+
+```
+git clone https://github.com/emiliosheinz/unisinos-todo-list.git
+```
+Instale as dependências. Na raiz do projeto rode o comando abaixo
+```
+yarn
+```
+Após isso rode a aplicação em modo de desenvolvimento
+```
+yarn dev
+```
+Acesse: http://localhost:5173/
