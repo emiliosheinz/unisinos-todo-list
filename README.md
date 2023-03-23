@@ -4,7 +4,7 @@
 
 Organize sua vida com facilidade usando o nosso aplicativo de Todo List! Com o nosso app, você pode criar tarefas para cada aspecto da sua vida - desde o trabalho até os afazeres domésticos.
 
-![](/img/Todo.png)
-![](/img/TodoEmpty.png)
+![](/docs/images/Todo.png)
+![](/docs/images/TodoEmpty.png)
 
 
