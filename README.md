@@ -33,6 +33,7 @@ Para desenvolver esta aplicação decidimos utilizar as seguintes tecnologias:
 - React
 - TypeScript
 - Vite
+- MUI
 
 React, Vite e Typescript são três ferramentas poderosas que podem melhorar significativamente o processo de desenvolvimento de sites. Aqui estão algumas razões pelas quais decidimos utilizá-las para o desenvolvimento deste projeto.
 
@@ -47,5 +48,9 @@ React, Vite e Typescript são três ferramentas poderosas que podem melhorar sig
 ### [Typescript](https://www.typescriptlang.org/)
 1. **Tipagem Forte:** Com uma tipagem forte você pode detectar e corrigir erros de programação mais cedo, o que pode reduzir o tempo necessário para desenvolver e testar seu site.
 1. **Intellisense:** O Typescript também inclui recursos avançados de Intellisense em editores de código populares como VS Code, permitindo que você veja sugestões de código e erros de sintaxe em tempo real.
+### [MUI](https://mui.com/)
+1. **Componentes Reutilizáveis:** MUI é uma biblioteca de componentes de interface do usuário que oferece uma ampla gama de componentes reutilizáveis, permitindo que você construa rapidamente interfaces modernas e responsivas.
+1. **Personalização:** MUI oferece uma variedade de opções de personalização para adaptar a aparência e o comportamento dos componentes para atender às necessidades do seu projeto.
+1. **Documentação Completa:** A documentação abrangente e clara da MUI ajuda a acelerar o desenvolvimento, permitindo que os desenvolvedores aprendam rapidamente como usar os componentes e implementar recursos mais complexos.
 
-
+Sendo assim, utilizando essas tecnologias juntas, podemos construir rapidamente uma aplicação moderna, escalável e responsiva com uma base sólida de componentes reutilizáveis e documentação completa. Além disso, a tipagem forte do Typescript pode ajudar a garantir a qualidade do código e reduzir o tempo de desenvolvimento e testes. A arquitetura de componentes reutilizáveis do React combinada com a biblioteca de componentes do MUI pode simplificar significativamente a criação de interfaces de usuário atraentes e modernas. E, com a ajuda do Vite, podemos acelerar o processo de desenvolvimento com um servidor de desenvolvimento altamente otimizado e uma configuração fácil.
