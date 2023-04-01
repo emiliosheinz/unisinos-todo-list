@@ -1,5 +1,4 @@
 {
-  "base": "/unisinos-todo-list/",
   "compilerOptions": {
     "composite": true,
     "module": "ESNext",
