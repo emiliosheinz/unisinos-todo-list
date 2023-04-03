@@ -1,21 +1,65 @@
 import { useState } from 'react'
+import { Button, Input, ThemeProvider, createTheme } from '@mui/material'
+import { v4 as uuidv4 } from 'uuid'
 
 import './App.css'
-import { Button } from '@mui/material'
+
+type Todo = {
+  id: string
+  text: string
+  isCompleted: boolean
+}
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [todos, setTodos] = useState<Todo[]>([])
+  const [newTodoText, setNewTodoText] = useState<string>('')
 
   return (
     <div className='app'>
-      <h1>Unisinos Todo List</h1>
-      <h3>{count}</h3>
-      <div className='buttons'>
-        <Button onClick={() => setCount(c => c - 1)}>Decrement</Button>
-        <Button onClick={() => setCount(c => c + 1)}>Increment</Button>
-      </div>
+      <h1>🚀 todo</h1>
+      <form
+        className='form-group'
+        onSubmit={e => {
+          e.preventDefault()
+
+          if (!newTodoText) return
+
+          const newTodo: Todo = {
+            id: uuidv4(),
+            text: newTodoText,
+            isCompleted: false,
+          }
+          setTodos(currentTodos => [newTodo, ...currentTodos])
+        }}
+      >
+        <Input
+          fullWidth
+          color='primary'
+          placeholder='Adicione uma nova tarefa'
+          onChange={e => setNewTodoText(e.target.value)}
+        />
+        <Button variant='contained' color='primary' type='submit'>
+          Criar
+        </Button>
+      </form>
+
+      {todos.map(todo => (
+        <span key={todo.id}>{todo.text}</span>
+      ))}
     </div>
   )
 }
 
-export default App
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark',
+  },
+})
+
+export default () => {
+  return (
+    <ThemeProvider theme={darkTheme}>
+      <App />
+    </ThemeProvider>
+  )
+}
