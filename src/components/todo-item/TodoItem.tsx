@@ -1,13 +1,10 @@
-import { useState, useCallback } from 'react'
-
 import './TodoItem.css'
 
 type Props = {
-    text: string,
-    children?: React.ReactNode;
+    text: string
 }
 
-export function TodoItem({ text, children }: Props) {
+export function TodoItem({ text }: Props) {
     return (
         <div className='todo-item'>
             <div className='todo-text'>{text}</div>
