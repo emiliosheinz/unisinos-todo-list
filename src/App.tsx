@@ -1,13 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Input, ThemeProvider, createTheme } from '@mui/material'
 import Icon from '@mui/material/Icon'
 import { v4 as uuidv4 } from 'uuid'
 import { TodoItem } from './components/todo-item/TodoItem'
-import { Logo } from './components/logo/Logo';
+import { Logo } from './components/logo/Logo'
 import { Badge } from './components/badge/Badge'
 import { EmptyList } from './components/empty-list/EmptyList'
 
 import './App.css'
+
+const LOCAL_STORAGE_TODOS_KEY = 'todos'
 
 type Todo = {
   id: string
@@ -15,9 +17,17 @@ type Todo = {
   isCompleted: boolean
 }
 
-function App() {
-  const [todos, setTodos] = useState<Todo[]>([])
+type AppProps = {
+  persistedTodos?: Todo[]
+}
+
+function App({ persistedTodos }: AppProps) {
+  const [todos, setTodos] = useState<Todo[]>(persistedTodos ?? [])
   const [newTodoText, setNewTodoText] = useState<string>('')
+
+  useEffect(() => {
+    localStorage.setItem(LOCAL_STORAGE_TODOS_KEY, JSON.stringify(todos))
+  }, [todos])
 
   function onClickDelete(key: string) {
     setTodos(todos.filter(todo => todo.id != key))
@@ -54,12 +64,14 @@ function App() {
             value={newTodoText}
             onChange={e => setNewTodoText(e.target.value)}
           />
-          <Button disabled={newTodoText.length == 0}
+          <Button
+            disabled={newTodoText.length == 0}
             variant='contained'
             color='primary'
             type='submit'
             endIcon={<Icon>add_circle</Icon>}
-            style={{ textTransform: 'none' }} >
+            style={{ textTransform: 'none' }}
+          >
             Criar
           </Button>
         </form>
@@ -71,12 +83,22 @@ function App() {
           </div>
           <div>
             <span>Concluídas</span>
-            <Badge>{todos.filter(i => i.isCompleted).length} de {todos.length}</Badge>
+            <Badge>
+              {todos.filter(i => i.isCompleted).length} de {todos.length}
+            </Badge>
           </div>
         </div>
-        {todos.length ? todos.map(todo => (
-          <TodoItem id={todo.id} text={todo.text} onClickDelete={onClickDelete} />
-        )) : <EmptyList />}
+        {todos.length ? (
+          todos.map(todo => (
+            <TodoItem
+              id={todo.id}
+              text={todo.text}
+              onClickDelete={onClickDelete}
+            />
+          ))
+        ) : (
+          <EmptyList />
+        )}
       </div>
     </div>
   )
@@ -89,9 +111,12 @@ const darkTheme = createTheme({
 })
 
 export default () => {
+  const persistedTodosString = localStorage.getItem(LOCAL_STORAGE_TODOS_KEY)
+  const persistedTodos = JSON.parse(persistedTodosString || '[]')
+
   return (
     <ThemeProvider theme={darkTheme}>
-      <App />
+      <App persistedTodos={persistedTodos} />
     </ThemeProvider>
   )
 }
