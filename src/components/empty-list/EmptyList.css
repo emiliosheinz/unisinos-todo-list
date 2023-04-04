@@ -1,0 +1,17 @@
+.empty-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.empty-list-text-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #808080;
+    padding-top: 16px;
+}
+
+.bold-text {
+    font-weight: bold;
+}

@@ -14,3 +14,17 @@
 .todo-text {
     text-align: left;
 }
+
+.delete-icon {
+    background: none;
+    border: none;
+    padding: 0 0;
+}
+
+.delete-icon:hover {
+    cursor: pointer;
+}
+
+.delete-icon:hover path {
+    opacity: 0.6;
+}

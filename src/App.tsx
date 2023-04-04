@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react'
-import { Button, Input, ThemeProvider, createTheme, Checkbox } from '@mui/material'
+import { Button, Input, ThemeProvider, createTheme } from '@mui/material'
 import { v4 as uuidv4 } from 'uuid'
 import { TodoItem } from './components/todo-item/TodoItem'
+import { EmptyList } from './components/empty-list/EmptyList'
 
 import './App.css'
 
@@ -14,6 +15,10 @@ type Todo = {
 function App() {
   const [todos, setTodos] = useState<Todo[]>([])
   const [newTodoText, setNewTodoText] = useState<string>('')
+
+  function onClickDelete(key: string) {
+    setTodos(todos.filter(todo => todo.id != key))
+  }
 
   return (
     <div className='app'>
@@ -48,8 +53,8 @@ function App() {
       </form>
 
       {todos.length ? todos.map(todo => (
-        <TodoItem key={todo.id} text={todo.text} />
-      )) : <span>sem itens</span>}
+        <TodoItem id={todo.id} text={todo.text} onClickDelete={onClickDelete} />
+      )) : <EmptyList />}
     </div>
   )
 }
