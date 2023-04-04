@@ -9,7 +9,7 @@ import { EmptyList } from './components/empty-list/EmptyList'
 
 import './App.css'
 
-type Todo = {
+export type Todo = {
   id: string
   text: string
   isCompleted: boolean
@@ -21,6 +21,18 @@ function App() {
 
   function onClickDelete(key: string) {
     setTodos(todos.filter(todo => todo.id != key))
+  }
+
+  function toggleTodoCompleted(id: string) {
+    const newTodos = todos.map<Todo>((todo) => {
+      if (todo.id !== id) return todo;
+      return {
+        ...todo,
+        isCompleted: !todo.isCompleted,
+      }
+    })
+
+    setTodos(newTodos);
   }
 
   return (
@@ -75,7 +87,12 @@ function App() {
           </div>
         </div>
         {todos.length ? todos.map(todo => (
-          <TodoItem id={todo.id} text={todo.text} onClickDelete={onClickDelete} />
+          <TodoItem
+            key={todo.id}
+            todo={todo}
+            onClickDelete={onClickDelete}
+            onClickComplete={toggleTodoCompleted}
+          />
         )) : <EmptyList />}
       </div>
     </div>
