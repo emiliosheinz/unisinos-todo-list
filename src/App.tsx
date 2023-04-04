@@ -11,7 +11,7 @@ import './App.css'
 
 const LOCAL_STORAGE_TODOS_KEY = 'todos'
 
-type Todo = {
+export type Todo = {
   id: string
   text: string
   isCompleted: boolean
@@ -31,6 +31,18 @@ function App({ persistedTodos }: AppProps) {
 
   function onClickDelete(key: string) {
     setTodos(todos.filter(todo => todo.id != key))
+  }
+
+  function toggleTodoCompleted(id: string) {
+    const newTodos = todos.map<Todo>(todo => {
+      if (todo.id !== id) return todo
+      return {
+        ...todo,
+        isCompleted: !todo.isCompleted,
+      }
+    })
+
+    setTodos(newTodos)
   }
 
   return (
@@ -91,9 +103,10 @@ function App({ persistedTodos }: AppProps) {
         {todos.length ? (
           todos.map(todo => (
             <TodoItem
-              id={todo.id}
-              text={todo.text}
+              key={todo.id}
+              todo={todo}
               onClickDelete={onClickDelete}
+              onClickComplete={toggleTodoCompleted}
             />
           ))
         ) : (
