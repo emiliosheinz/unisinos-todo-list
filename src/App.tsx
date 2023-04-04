@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { Button, Input, ThemeProvider, createTheme } from '@mui/material'
+import { useState, useCallback } from 'react'
+import { Button, Input, ThemeProvider, createTheme, Checkbox } from '@mui/material'
 import { v4 as uuidv4 } from 'uuid'
+import { TodoItem } from './components/todo-item/TodoItem'
 
 import './App.css'
 
@@ -29,23 +30,26 @@ function App() {
             text: newTodoText,
             isCompleted: false,
           }
+
           setTodos(currentTodos => [newTodo, ...currentTodos])
+          setNewTodoText('')
         }}
       >
         <Input
           fullWidth
           color='primary'
           placeholder='Adicione uma nova tarefa'
+          value={newTodoText}
           onChange={e => setNewTodoText(e.target.value)}
         />
-        <Button variant='contained' color='primary' type='submit'>
+        <Button disabled={newTodoText.length == 0} variant='contained' color='primary' type='submit'>
           Criar
         </Button>
       </form>
 
-      {todos.map(todo => (
-        <span key={todo.id}>{todo.text}</span>
-      ))}
+      {todos.length ? todos.map(todo => (
+        <TodoItem key={todo.id} text={todo.text} />
+      )) : <span>sem itens</span>}
     </div>
   )
 }
