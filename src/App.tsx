@@ -5,6 +5,7 @@ import { v4 as uuidv4 } from 'uuid'
 import { TodoItem } from './components/todo-item/TodoItem'
 import { Logo } from './components/logo/Logo';
 import { Badge } from './components/badge/Badge'
+import { EmptyList } from './components/empty-list/EmptyList'
 
 import './App.css'
 
@@ -17,6 +18,10 @@ type Todo = {
 function App() {
   const [todos, setTodos] = useState<Todo[]>([])
   const [newTodoText, setNewTodoText] = useState<string>('')
+
+  function onClickDelete(key: string) {
+    setTodos(todos.filter(todo => todo.id != key))
+  }
 
   return (
     <div>
@@ -69,10 +74,9 @@ function App() {
             <Badge>{todos.filter(i => i.isCompleted).length} de {todos.length}</Badge>
           </div>
         </div>
-
         {todos.length ? todos.map(todo => (
-          <TodoItem key={todo.id} text={todo.text} />
-        )) : <span>sem itens</span>}
+          <TodoItem id={todo.id} text={todo.text} onClickDelete={onClickDelete} />
+        )) : <EmptyList />}
       </div>
     </div>
   )
