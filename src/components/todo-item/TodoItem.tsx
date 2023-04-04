@@ -1,4 +1,3 @@
-import { useState, useCallback } from 'react'
 import { DeleteIcon } from '../delete-icon/DeleteIcon';
 
 import './TodoItem.css'
