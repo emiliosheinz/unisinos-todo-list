@@ -12,7 +12,7 @@ type Props = {
 
 export function TodoItem({ todo, onClickDelete, onClickComplete }: Props) {
     return (
-        <div className='todo-item' key={todo.id}>
+        <div className='todo-item'>
             <button className='checkbox-container' onClick={() => onClickComplete(todo.id)}>
                 {todo.isCompleted ? <CheckCircleRoundedIcon /> : <div />}
             </button>

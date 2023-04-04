@@ -88,6 +88,7 @@ function App() {
         </div>
         {todos.length ? todos.map(todo => (
           <TodoItem
+            key={todo.id}
             todo={todo}
             onClickDelete={onClickDelete}
             onClickComplete={toggleTodoCompleted}
