@@ -34,7 +34,7 @@ function App({ persistedTodos }: AppProps) {
   }
 
   function toggleTodoCompleted(id: string) {
-    const newTodos = todos.map<Todo>(todo => {
+    const newTodos = todos.map(todo => {
       if (todo.id !== id) return todo
       return {
         ...todo,
