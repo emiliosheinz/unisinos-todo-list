@@ -5,6 +5,21 @@ on:
     branches: ['main']
 
   workflow_dispatch:
+    inputs:
+      test:
+        description: 'Cypres tests'
+        required: true
+        default: 'test'
+
+      test_github_account:
+        description: 'GitHub Account Owner'
+        required: true
+        default: 'emiliosheinz'
+
+      test_repo_github:
+        description: 'repo-name'
+        required: true
+        default: 'unisinos-todo-list'
 
 permissions:
   contents: read
